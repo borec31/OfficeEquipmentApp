@@ -1,0 +1,41 @@
+﻿<Window x:Class="OfficeEquipmentApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:OfficeEquipmentApp"
+        xmlns:vm="clr-namespace:OfficeEquipmentApp.ViewModel"
+        Title="Учет офисного оборудования" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Таблица для отображения списка оборудования -->
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}" AutoGenerateColumns="False" Margin="0,0,10,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"/>
+                <DataGridComboBoxColumn Header="Тип" SelectedItemBinding="{Binding Type}">
+                    <DataGridComboBoxColumn.ItemsSource>
+                        <x:Static Member="local:MainWindow.EquipmentTypes"/>
+                    </DataGridComboBoxColumn.ItemsSource>
+                </DataGridComboBoxColumn>
+                <DataGridComboBoxColumn Header="Статус" SelectedItemBinding="{Binding Status}">
+                    <DataGridComboBoxColumn.ItemsSource>
+                        <x:Static Member="local:MainWindow.EquipmentStatuses"/>
+                    </DataGridComboBoxColumn.ItemsSource>
+                </DataGridComboBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Панель с кнопками для CRUD-операций -->
+        <StackPanel Grid.Column="1" Orientation="Vertical" Width="150">
+            <Button Content="Добавить" Command="{Binding AddCommand}" Margin="0,0,0,5"/>
+            <Button Content="Обновить" Command="{Binding UpdateCommand}" Margin="0,0,0,5"/>
+            <Button Content="Удалить" Command="{Binding DeleteCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>
