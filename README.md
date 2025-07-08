@@ -13,7 +13,7 @@
   - Данные инициализируются при запуске.
 
 ## Установка
-1. Клонируйте репозиторий: `git clone https://github.com/твой_логин/OfficeEquipmentApp.git`
+1. Клонируйте репозиторий: `git clone https://github.com/borec31/OfficeEquipmentApp.git`
 2. Откройте `OfficeEquipmentApp.sln` в Visual Studio.
 3. Восстановите NuGet-пакеты: **Сборка** → **Восстановить пакеты NuGet**.
 4. Соберите и запустите: **F5**.
